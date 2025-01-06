@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { AppComponent } from './app.component';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,7 +12,9 @@ import { LoginModule } from './feature/login/login.module';
 import { AppRoutingModule } from './app.routes';
 import { CanActivateGuard } from './guards/auth.guard';
 import { BarraDeNavegacaoComponent } from './components/barra-de-navegacao/barra-de-navegacao.component';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FeatherModule } from 'angular-feather';
+import { allIcons } from 'angular-feather/icons';
 
 
 @NgModule({
@@ -26,8 +28,12 @@ import { BarraDeNavegacaoComponent } from './components/barra-de-navegacao/barra
     AppRoutingModule,
     PrincipalModule,
     LoginModule,
-    BarraDeNavegacaoComponent
+    BarraDeNavegacaoComponent,
+    NgbModule,
+    FeatherModule,
+    FeatherModule.pick(allIcons),
   ],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

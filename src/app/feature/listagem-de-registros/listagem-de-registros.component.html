@@ -1,14 +1,24 @@
 <barra-de-navegacao></barra-de-navegacao>
-<div class="container pt-3">
+<div class="container pt-3 pb-3">
     <p class="text-primary">Cadastro de Bancos</p>
-    <div class=" col-12 d-flex flex-row justify-content-between mb-3">
-        <div class=" col-6 d-flex flex-row">
-            <input type="email" class="form-control" placeholder="Pesquisar">
-        </div>
+    <div class="col-12 d-flex flex-row justify-content-between mb-3">
         <div class="d-flex flex-row">
-            <button class="btn btn-primary me-2">Novo</button>
-            <button class="btn btn-danger">Excluir</button>
+            <button class="btn btn-primary me-2" (click)="goTo(routerEnum.NOVO_REGISTRO)">Cadastrar novo Banco</button>
         </div>
     </div>
+
+    <responsive-table 
+    *ngIf="showTable"
+    titulo="Total de registros: {{ bancos.totalElements }}"
+    [dataN]="bancos.content"
+    [columnsN]="columnsTable"
+    [pageSizeN]="bancos.size"
+    [totalItens]="bancos.totalElements"
+    (pageNav)="pageNav($event)"
+    (changeQtdItensNav)="changeQtdItensNav($event)"
+    (clickBuscar)="tableFilter($event)"
+    (clickBtnLimparFiltro)="limparFiltro($event)"
+    >        
+    </responsive-table>
 
 </div>

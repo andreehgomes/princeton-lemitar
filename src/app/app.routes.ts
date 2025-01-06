@@ -18,6 +18,11 @@ export const routes: Routes = [
         path: 'listagem-de-registros',
         loadChildren: () => import("./feature/listagem-de-registros/listagem-de-registros.module").then((m) => m.ListagemDeRegistrosModule),
         canActivate: [authGuard],
+    },
+    {
+        path: 'novo-registro',
+        loadChildren: () => import("./feature/novo-registro/novo-registro.module").then((m) => m.NovoRegistroModule),
+        canActivate: [authGuard],
     }
 ];
 

@@ -1,0 +1,23 @@
+<barra-de-navegacao></barra-de-navegacao>
+<div class="container pt-3 pb-3">
+    <p class="text-primary">Cadastro Banco</p>
+    <form [formGroup]="formGroupBanco" (ngSubmit)="onSubmit()">
+        <div class="mb-3 col-4">
+            <label class="form-label">Código</label>
+            <input type="text" class="form-control" formControlName="formControlCodigo">
+        </div>
+        <div class="mb-3 col-12">
+            <label class="form-label">Descrição</label>
+            <input type="text" class="form-control" formControlName="formControlDescricao">
+        </div>
+        <div class="mb-3 col-4">
+            <label class="form-label">Código</label>
+            <select class="form-select" aria-label="Default select example" formControlName="formControlStatus">
+                <option value="A">ATIVO</option>
+                <option value="I">INATIVO</option>
+              </select>
+        </div>
+
+        <button class="btn btn-primary me-2 col-2">Salvar</button>
+    </form>
+</div>

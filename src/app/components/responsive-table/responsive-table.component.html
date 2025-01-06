@@ -1,0 +1,92 @@
+<div class="row table-responsive">
+    <div class="col-md-12">
+        <!--- pagination Table -->
+        <div class="card">
+            <div id="card-body" class="card-body ps-4 pe-4">
+                <!-- Início formulário de filtro avançado -->
+                <form *ngIf="showFormGroupFilter && showButtonFiltro" [formGroup]="formGroupFilter"
+                    (keyup.enter)="onSubmit()" (ngSubmit)="onSubmit()" #formDirective="ngForm">
+                    <div class="col-12 d-flex flex-row justify-content-start mb-3">
+                        <div class=" col-6 d-flex flex-row me-3">
+                            <input [type]="'text'" [formControlName]="'campoTexto'" class="form-control" placeholder="Pesquisar">
+                        </div>
+                        <div class="d-flex flex-row">
+                            <button class="btn btn-primary me-2" type="submit">Buscar</button>
+                            <button class="btn btn-danger" (click)="zerarFormFilter()" type="button">Limpar Filtro</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- Fim formulário de filtro avançado -->
+
+                <!-- Início tabela -->
+                <div class="top-table">
+                    <p class="text-primary mb-0">
+                        <span class="lstick">{{titulo}}</span>
+                    </p>
+                    <!-- <span class="card-subtitle">You can bind our NgbPagination component with slicing the data
+              list</span> -->
+                    <select class="form-select" style="float: right; width: auto;" [(ngModel)]="pageSizeN"
+                        (change)="changeQtdItens()">
+                        <option [ngValue]="5">5 itens por página</option>
+                        <option [ngValue]="10">10 itens por página</option>
+                        <option [ngValue]="20">20 itens por página</option>
+                    </select>
+                </div>
+                <div id="content-table" class="content-table">
+                    <table id="table" class="table table-striped border mt-4">
+                        <thead>
+                            <tr>
+                                <th style="text-wrap: nowrap;" *ngFor="let column of columnsN">
+                                    <div class="th-content">
+                                        <div>{{column.name}}</div>
+                                        <div id="sort-{{column.prop}}" *ngIf="column.sort"
+                                            (click)="sortClick('sort-'.concat(column.prop))">
+                                            <i class="fas fa-angle-up"></i>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th *ngIf="colunaAcoes" class="align-col-btn">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of dataN"
+                                [ngClass]="{ 'table-row-red' : validateRowRed(data, propValidateRowRed) == true }"
+                                ngbDropdown placement="top-end" #myDropDown="ngbDropdown"
+                                (contextmenu)="onRigthClick($event,data)">
+                                <td style="text-wrap: nowrap;" *ngFor="let column of columnsN">
+                                    <p *ngIf="column.datePipe != true && column.replaceBooleanValue != true">{{
+                                        returnPropSubProp(data, column.prop) }}</p>
+                                    <p *ngIf="column.datePipe == true">{{ returnPropSubProp(data, column.prop) | date :
+                                        "dd/MM/yyyy HH:mm:ss" : getUserTimeZone()}}</p>
+                                    <div *ngIf="column.replaceBooleanValue == true">
+                                        <p *ngIf="returnPropSubProp(data, column.prop) == true">{{
+                                            column.replaceBooleanTrueValue }}</p>
+                                        <p *ngIf="returnPropSubProp(data, column.prop) != true">{{
+                                            column.replaceBooleanFalseValue }}</p>
+                                    </div>
+                                </td>
+                                <div ngbDropdownMenu class="dropdown-div" [ngStyle]="menuStyles">
+                                    <button *ngFor="let itemMenu of contextMenu" class="dropdown-item"
+                                        (click)="actionContextMenu(itemMenu.prop, data)">{{itemMenu.name}}</button>
+                                </div>
+                                <td *ngIf="colunaAcoes" class="align-col-btn">
+                                    <button *ngIf="btnEdit" (click)="edit(data)" title="Editar"
+                                        class="btn btn-primary me-1"><i class="bi bi-pencil"></i></button>
+                                    <button *ngIf="btnDelete" (click)="delete(data)" title="Deletar"
+                                        class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="d-flex justify-content-center p-2">
+                    <ngb-pagination [collectionSize]="totalItens" [(page)]="page" [pageSize]="pageSizeN"
+                        (pageChange)="pageChange($event)" [maxSize]="maxSize">
+                    </ngb-pagination>
+                </div>
+            </div>
+        </div>
+        <!--- End pagination Table -->
+    </div>
+</div>
