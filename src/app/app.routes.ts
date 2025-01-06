@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './guards/auth.guard';
+import { AppComponent } from './app.component';
 
 export const routes: Routes = [
     {
@@ -11,8 +12,13 @@ export const routes: Routes = [
     {
         path: '',
         loadChildren: () => import("./feature/principal/principal.module").then((m) => m.PrincipalModule),
-        canActivate: [authGuard]
+        canActivate: [authGuard],
     },
+    {
+        path: 'listagem-de-registros',
+        loadChildren: () => import("./feature/listagem-de-registros/listagem-de-registros.module").then((m) => m.ListagemDeRegistrosModule),
+        canActivate: [authGuard],
+    }
 ];
 
 @NgModule({

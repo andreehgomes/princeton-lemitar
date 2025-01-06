@@ -11,6 +11,7 @@ import { PrincipalModule } from './feature/principal/principal.module';
 import { LoginModule } from './feature/login/login.module';
 import { AppRoutingModule } from './app.routes';
 import { CanActivateGuard } from './guards/auth.guard';
+import { BarraDeNavegacaoComponent } from './components/barra-de-navegacao/barra-de-navegacao.component';
 
 
 
@@ -24,7 +25,8 @@ import { CanActivateGuard } from './guards/auth.guard';
     OAuthModule.forRoot(),
     AppRoutingModule,
     PrincipalModule,
-    LoginModule
+    LoginModule,
+    BarraDeNavegacaoComponent
   ],
   bootstrap: [AppComponent],
 })

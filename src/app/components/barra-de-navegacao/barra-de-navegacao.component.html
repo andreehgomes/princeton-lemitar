@@ -5,7 +5,7 @@
             <button class="navbar-brand btn btn-light" (click)="goTo(routerEnum.LISTAGEM_DE_REGISTROS)">Bancos</button>
         </div>
         <div class="container-fluid justify-content-end">
-            <div class="navbar-brand">Usuário Logado</div>
+            <div class="navbar-brand">Olá, {{ nomeUsuario }}</div>
             <button class="btn btn-primary" (click)="logout()">Logoff</button>
         </div>
     </nav>
