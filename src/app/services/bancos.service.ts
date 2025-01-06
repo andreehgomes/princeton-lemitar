@@ -20,8 +20,16 @@ export class BancosService {
     return this.http.get<BancosResponse>(`${this.base_url}${this.bancos}`, { headers: this.authService.returnHeaderAuthorization(), params: { ...pagination} })
   }
 
-  postNovoBanco(payload: BancosPayload): Observable<any>{
-    return this.http.post<any>(`${this.base_url}${this.bancos}`, payload, { headers: this.authService.returnHeaderAuthorization() });
+  getBancoById(id: number): Observable<BancosPayload>{
+    return this.http.get<BancosPayload>(`${this.base_url}${this.bancos}/${id}`, { headers: this.authService.returnHeaderAuthorization()})
+  }
+
+  postNovoBanco(payload: BancosPayload): Observable<BancosPayload>{
+    return this.http.post<BancosPayload>(`${this.base_url}${this.bancos}`, payload, { headers: this.authService.returnHeaderAuthorization() });
+  }
+  
+  putNovoBanco(payload: BancosPayload): Observable<BancosPayload>{
+    return this.http.put<BancosPayload>(`${this.base_url}${this.bancos}/${payload.id}`, payload, { headers: this.authService.returnHeaderAuthorization() });
   }
 
   deleteBancoById(id: number): Observable<any>{

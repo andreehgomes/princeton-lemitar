@@ -17,8 +17,8 @@ export class LoginComponent {
   constructor(private _authService: AuthService, private router: Router, private oauthService: OAuthService){}
 
   formLogin = new FormGroup({
-    formControlUser: new FormControl('', [Validators.required]),
-    formControlPass: new FormControl('', [Validators.required])
+    formControlUser: new FormControl('devadmin', [Validators.required]),
+    formControlPass: new FormControl('admin@123', [Validators.required])
     })
 
   onSubmitLogin(){

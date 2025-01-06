@@ -1,7 +1,7 @@
 <barra-de-navegacao></barra-de-navegacao>
 <div class="container pt-3 pb-3">
     <p class="text-primary">Cadastro de Bancos</p>
-    <div class="col-12 d-flex flex-row justify-content-between mb-3">
+    <div *ngIf="validateRole('ROLE_BANCO_ADD')" class="col-12 d-flex flex-row justify-content-between mb-3">
         <div class="d-flex flex-row">
             <button class="btn btn-primary me-2" (click)="goTo(routerEnum.NOVO_REGISTRO)">Cadastrar novo Banco</button>
         </div>
@@ -19,6 +19,9 @@
     (clickBuscar)="tableFilter($event)"
     (clickBtnLimparFiltro)="limparFiltro($event)"
     (clickBtnDelete)="delete($event)"
+    (clickBtnEdit)="edit($event)"
+    [btnEdit]="validateRole('ROLE_BANCO_EDT')"
+    [btnDelete]="validateRole('ROLE_BANCO_DEL')"
     >        
     </responsive-table>
 

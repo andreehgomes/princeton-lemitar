@@ -5,6 +5,8 @@ import { ArrayColumnResponsiveTable } from '../../components/responsive-table/mo
 import { BancosResponse } from '../../interfaces/bancos-response';
 import { Router } from '@angular/router';
 import { RouterEnum } from '../../const/router-enum';
+import { AccessToken } from '../../interfaces/access-token';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-listagem-de-registros',
@@ -13,7 +15,7 @@ import { RouterEnum } from '../../const/router-enum';
   styleUrl: './listagem-de-registros.component.scss'
 })
 export class ListagemDeRegistrosComponent implements OnInit {
-
+  usuarioLogado: AccessToken;
   readonly routerEnum = RouterEnum;
 
   pagination: Pagination = {
@@ -30,9 +32,13 @@ export class ListagemDeRegistrosComponent implements OnInit {
     { name: "Descrição", prop: "descricao" }
   ]
 
-  constructor(private bancosService: BancosService, private router: Router){}
+  constructor(private bancosService: BancosService, private router: Router, private _authService: AuthService){
+    this.usuarioLogado = this._authService.jwt.getValue();
+    console.log('USUÁRIO LOGADO: ', this.usuarioLogado)
+  }
 
   ngOnInit(): void {
+    console.log(this.validateRole("ROLE_BANCO_DEL"))
     this.listar();
   }
 
@@ -94,4 +100,14 @@ export class ListagemDeRegistrosComponent implements OnInit {
       }
     })
   }
+
+  edit(event){
+    console.log(event);
+    this.router.navigate([`${this.routerEnum.EDITAR_REGISTRO}/${event.id}`])
+  }
+
+  validateRole(role: string): boolean {
+    return this.usuarioLogado.authorities.includes(role);
+  }
+
 }

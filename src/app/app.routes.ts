@@ -23,6 +23,11 @@ export const routes: Routes = [
         path: 'novo-registro',
         loadChildren: () => import("./feature/novo-registro/novo-registro.module").then((m) => m.NovoRegistroModule),
         canActivate: [authGuard],
+    },
+    {
+        path: 'editar-registro/:id',
+        loadChildren: () => import("./feature/novo-registro/novo-registro.module").then((m) => m.NovoRegistroModule),
+        canActivate: [authGuard],
     }
 ];
 
