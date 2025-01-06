@@ -1,0 +1,12 @@
+<div class="navbar-light bg-light">
+    <nav class="container navbar navbar-expand-lg">
+        <div class="container-fluid justify-content-start">
+            <button class="navbar-brand btn btn-light" (click)="goTo(routerEnum.PRINCIPAL)">Home</button>
+            <button class="navbar-brand btn btn-light" (click)="goTo(routerEnum.LISTAGEM_DE_REGISTROS)">Bancos</button>
+        </div>
+        <div class="container-fluid justify-content-end">
+            <div class="navbar-brand">Usuário Logado</div>
+            <button class="btn btn-primary" (click)="logout()">Logoff</button>
+        </div>
+    </nav>
+</div>
