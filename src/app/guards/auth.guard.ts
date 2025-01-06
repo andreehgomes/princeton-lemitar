@@ -11,7 +11,6 @@ export class CanActivateGuard{
   readonly routerEnum = RouterEnum;
   constructor(private router: Router, private oauthService: OAuthService){}
   canActivate(): boolean {
-    console.log('this.oauthService.hasValidAccessToken(): ', this.oauthService.hasValidAccessToken())
     if(this.oauthService.hasValidAccessToken()){
       return true
     }else{

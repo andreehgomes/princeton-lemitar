@@ -19,7 +19,6 @@ export class BarraDeNavegacaoComponent implements OnInit {
 
   ngOnInit(): void {
     this._authService.jwt.subscribe((jwt) => {
-      console.log('jwt: ', jwt)
       this.nomeUsuario = jwt.name
     })
   }

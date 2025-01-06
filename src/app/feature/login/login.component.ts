@@ -17,8 +17,8 @@ export class LoginComponent {
   constructor(private _authService: AuthService, private router: Router, private oauthService: OAuthService){}
 
   formLogin = new FormGroup({
-    formControlUser: new FormControl('devadmin', [Validators.required]),
-    formControlPass: new FormControl('admin@123', [Validators.required])
+    formControlUser: new FormControl('', [Validators.required]),
+    formControlPass: new FormControl('', [Validators.required])
     })
 
   onSubmitLogin(){
@@ -29,7 +29,6 @@ export class LoginComponent {
   login(user: string, pass: string){
     this._authService.loginWithUsernamePassword(user, pass).subscribe(({
       next: (user) => {
-        console.log('USER: ', user)
         this._authService.successLogin(user);
       },
       error: (error) => {

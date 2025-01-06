@@ -39,7 +39,6 @@ export class ListagemDeRegistrosComponent implements OnInit {
   listar(){
     this.bancosService.getListBancos(this.pagination).subscribe({
       next: (res) => {
-        console.log('Bancos: ', res);
         this.bancos = res;
         this.showTable = true;
       },
@@ -50,7 +49,6 @@ export class ListagemDeRegistrosComponent implements OnInit {
   }
 
   pageNav(event) {
-    console.log("EVENT: ", event)
     this.pagination.pageNumber = event.page;
     this.pagination.pageSize = event.size;
     this.listar()
@@ -83,5 +81,17 @@ export class ListagemDeRegistrosComponent implements OnInit {
 
   goTo(rota: string){
     this.router.navigate([rota])
+  }
+  
+  delete(event){
+    this.bancosService.deleteBancoById(event.id).subscribe({
+      next: (res) => {
+        alert("Banco excluído com sucesso");
+        this.listar()
+      },
+      error: (err) => {
+        alert("Erro ao deletar banco, tente novamente em instantes.")
+      }
+    })
   }
 }

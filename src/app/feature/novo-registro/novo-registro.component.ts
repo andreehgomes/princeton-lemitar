@@ -44,7 +44,6 @@ export class NovoRegistroComponent {
         alert(`Error: ${err.error[0].mensagemUsuario}`)
       }
     })
-    console.log('NOVO BANCO: ', payload)
   }
 
 }

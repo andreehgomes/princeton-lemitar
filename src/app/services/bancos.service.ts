@@ -24,4 +24,8 @@ export class BancosService {
     return this.http.post<any>(`${this.base_url}${this.bancos}`, payload, { headers: this.authService.returnHeaderAuthorization() });
   }
 
+  deleteBancoById(id: number): Observable<any>{
+    return this.http.delete(`${this.base_url}${this.bancos}/${id}`, { headers: this.authService.returnHeaderAuthorization() })
+  }
+
 }
